@@ -1,10 +1,7 @@
 package TSP.implementations.forhuman;
 
-import TSP.algorithms.Algorithm;
-import TSP.algorithms.AlgorithmProvider;
+import TSP.algorithms.*;
 import TSP.algorithms.BranchAndBound.BranchAndBound;
-import TSP.algorithms.BruteForce;
-import TSP.algorithms.DynamicProgramming;
 
 import java.util.Scanner;
 
@@ -18,7 +15,8 @@ public class HumanAlgorithmProvider implements AlgorithmProvider {
             System.out.println("1. BruteForce");
             System.out.println("2. Branch&Bound");
             System.out.println("3. Dynamic programming");
-            System.out.println("4. Wyjście");
+            System.out.println("4. Tabu Search");
+            System.out.println("5. Wyjście");
             int choice = scanner.nextInt();
             switch (choice) {
                 case 1 -> {
@@ -31,6 +29,9 @@ public class HumanAlgorithmProvider implements AlgorithmProvider {
                     return new DynamicProgramming();
                 }
                 case 4 -> {
+                    return new TabuSearch();
+                }
+                case 5 -> {
                     return null;
                 }
                 default -> System.out.println("Nieprawidłowy wybór. Wybierz ponownie.");

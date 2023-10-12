@@ -26,12 +26,6 @@ public class HumanReadableReportGenerator implements ReportGenerator {
     }
 
     private String buildOutputString(MeasuredAlghorithmResult result) {
-        if (!result.isExecutedCorrectly()) {
-            return "Zatrzymano algorytm po przekroczeniu górnej granicy czasu " +
-                    (result.getExecutionTime() / 1000) +
-                    "s";
-        }
-
         return "Algorytm: " +
                 result.getAlgorithmResult().getAlgorithmName() +
                 "\n" +

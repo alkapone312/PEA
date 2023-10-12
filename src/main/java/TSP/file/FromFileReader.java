@@ -13,36 +13,52 @@ public class FromFileReader {
         System.out.println("Podaj nazwę pliku z danymi:");
         String fileName = scanner.nextLine();
 
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(fileName));
-            System.out.println("Plik otwarto pomyslnie!");
+        int[][] distanceMatrix = null;
+        int actualRow = 0;
+        int actualCol = 0;
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             String line;
-            int numCities = 0;
-            int[][] distanceMatrix = null;
+            boolean readingSection = false;
 
-            int currentRow = 0;
-
-            while ((line = br.readLine()) != null) {
-                if (numCities == 0) {
-                    numCities = Integer.parseInt(line);
-                    distanceMatrix = new int[numCities][numCities];
-                } else {
+            while ((line = reader.readLine()) != null) {
+                if (line.startsWith("DIMENSION")) {
+                    int dimension = extractDimension(line);
+                    distanceMatrix = new int[dimension][dimension];
+                } else if (line.contains("EDGE_WEIGHT_SECTION")) {
+                    readingSection = true;
+                } else if (readingSection) {
                     String[] values = line.trim().split("\\s+");
-                    for (int currentCol = 0; currentCol < numCities; currentCol++) {
-                        distanceMatrix[currentRow][currentCol] = Integer.parseInt(values[currentCol]);
+                    for(int i = 0 ; i < values.length; i++) {
+                        if (actualCol >= distanceMatrix.length) {
+                            actualCol = 0;
+                            actualRow++;
+                        }
+                        if(actualRow >= distanceMatrix.length) {
+                            return new Matrix(distanceMatrix);
+                        }
+                        distanceMatrix[actualRow][actualCol] = Integer.parseInt(values[i]);
+                        actualCol++;
                     }
-                    currentRow++;
-                    if (currentRow >= numCities) {
-                        break;
-                    }
+
                 }
             }
-
-            System.out.println("Dane zostały wczytane.");
-            return new Matrix(distanceMatrix);
         } catch (IOException e) {
-            System.out.println("Nie udało się otworzyć pliku!");
+            e.printStackTrace();
         }
-        return null;
+
+        return new Matrix(distanceMatrix);
+    }
+
+    private int extractDimension(String line) {
+        String[] parts = line.split(":");
+        if (parts.length >= 2) {
+            try {
+                return Integer.parseInt(parts[1].trim());
+            } catch (NumberFormatException e) {
+                System.err.println("Error parsing dimension number: " + e.getMessage());
+            }
+        }
+        return 0;
     }
 }

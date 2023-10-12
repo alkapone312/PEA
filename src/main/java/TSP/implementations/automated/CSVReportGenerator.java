@@ -25,12 +25,12 @@ public class CSVReportGenerator implements ReportGenerator {
                 numberOfResults.replace(numberOfVertices, numberOfResults.get(numberOfVertices) + 1);
                 numberOfIncorrect.replace(
                         numberOfVertices,
-                        numberOfIncorrect.get(numberOfVertices) + (result.isExecutedCorrectly() ? 0 : 1)
+                        numberOfIncorrect.get(numberOfVertices) + (result.wasAlgorithmStopped() ? 0 : 1)
                 );
             } else {
                 sumExecutionTime.put(numberOfVertices, result.getExecutionTime());
                 numberOfResults.put(numberOfVertices, 1);
-                numberOfIncorrect.put(numberOfVertices, result.isExecutedCorrectly() ? 0 : 1);
+                numberOfIncorrect.put(numberOfVertices, result.wasAlgorithmStopped() ? 0 : 1);
             }
         }
 

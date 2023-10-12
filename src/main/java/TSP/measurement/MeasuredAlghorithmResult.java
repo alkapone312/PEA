@@ -16,16 +16,16 @@ public class MeasuredAlghorithmResult {
     /**
      * Flag that checks wheater alghorithm succeded generating result
      */
-    private final boolean executedCorrectly;
+    private final boolean algorithmStopped;
 
     public MeasuredAlghorithmResult(
             AlgorithmResult result,
             long executionTime,
-            boolean algorithmSucceed
+            boolean algorithmStopped
     ) {
         this.result = result;
         this.executionTime = executionTime;
-        this.executedCorrectly = algorithmSucceed;
+        this.algorithmStopped = algorithmStopped;
     }
 
     public AlgorithmResult getAlgorithmResult() {
@@ -36,7 +36,7 @@ public class MeasuredAlghorithmResult {
         return executionTime;
     }
 
-    public boolean isExecutedCorrectly() {
-        return executedCorrectly;
+    public boolean wasAlgorithmStopped() {
+        return algorithmStopped;
     }
 }

@@ -6,7 +6,7 @@ import TSP.algorithms.IncorrectDataException;
 import TSP.data.Matrix;
 
 public class AlgorithmMeasurement {
-    private final long upperTimeLimit;
+    private long upperTimeLimit;
 
     public AlgorithmMeasurement(long upperTimeLimit) {
         this.upperTimeLimit = upperTimeLimit;
@@ -36,5 +36,13 @@ public class AlgorithmMeasurement {
                 timer.getElapsedTime(),
                 timer.getElapsedTime() < upperTimeLimit
         );
+    }
+
+    public void setUpperTimeLimit(long upperTimeLimit) {
+        this.upperTimeLimit = upperTimeLimit;
+    }
+
+    public long getUpperTimeLimit() {
+        return upperTimeLimit;
     }
 }
