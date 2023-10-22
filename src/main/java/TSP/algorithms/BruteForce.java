@@ -29,7 +29,9 @@ public class BruteForce implements Algorithm {
                     bestTour = Arrays.copyOf(tour, numCities);
                 }
             } while (run && nextPermutation(tour));
-
+            int[] tourWithStart = Arrays.copyOf(bestTour, numCities + 1);
+            tourWithStart[numCities] = tourWithStart[0];
+            bestTour = tourWithStart;
             return new AlgorithmResult(numCities, bestTour, minDistance, getName());
         }
     }
