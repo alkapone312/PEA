@@ -3,6 +3,7 @@ package TSP;
 import TSP.algorithms.Algorithm;
 import TSP.algorithms.BranchAndBound.BranchAndBound;
 import TSP.algorithms.BruteForce;
+import TSP.algorithms.DynamicProgramming;
 import TSP.file.ToFileWriter;
 import TSP.implementations.automated.CSVReportGenerator;
 import TSP.implementations.automated.RandomDataProvider;
@@ -19,8 +20,8 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-//        Main.doAutomated();
-        Main.doHuman();
+        Main.doAutomated();
+//        Main.doHuman();
     }
 
     public static void doHuman() throws IOException {
@@ -29,7 +30,7 @@ public class Main {
                 new HumanDataProvider(),
                 new HumanAlgorithmProvider(),
                 reportGenerator,
-                new AlgorithmMeasurement(/*30*1000*/Integer.MAX_VALUE)
+                new AlgorithmMeasurement(30*1000)
         );
         tsp.run();
         new ToFileWriter("report.log").write(reportGenerator.generateReport());
@@ -39,7 +40,8 @@ public class Main {
         ReportGenerator reportGenerator = new CSVReportGenerator();
         ArrayList<Algorithm> algorithms = new ArrayList<>();
 //        algorithms.add(new BruteForce());
-        algorithms.add(new BranchAndBound());
+//        algorithms.add(new BranchAndBound());
+        algorithms.add(new DynamicProgramming());
         TSP tsp = new TSP(
 // Brute force tests
 //                new RandomDataProvider(new int[]{
@@ -53,14 +55,12 @@ public class Main {
 //                }),
 // Branch and bound tests
                 new RandomDataProvider(new int[]{
-                        33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33,
-                        34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
-                        35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35,
-                        36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36,
-//                        37, 37, 37, 37, 37, 37, 37, 37, 37, 37, 37, 37, 37, 37, 37, 37, 37, 37, 37, 37,
-//                        38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38,
-//                        39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39,
-//                        39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39,
+                        20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20,
+                        21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21,
+                        22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22,
+                        23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23,
+                        24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24,
+                        25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25,
                 }),
                 new StubAlgorithmProvider(algorithms),
                 reportGenerator,

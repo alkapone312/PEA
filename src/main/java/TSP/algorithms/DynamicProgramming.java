@@ -24,6 +24,10 @@ public class DynamicProgramming implements Algorithm {
         }
         int shortestPathCost = tsp(1, 0, dp, paths);
 
+        if(!run) {
+            return new AlgorithmResult(matrix.getDistanceMatrix().length, new int[]{}, 0, getName());
+        }
+
         int mask = 1;
         int[] path = new int[numberOfVertices + 1];
         path[0] = 0;

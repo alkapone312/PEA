@@ -37,7 +37,9 @@ public class TSP {
                     result = algorithmMeasurement.measureAlgorithm(algorithm, data);
                     reportGenerator.addToReport(result);
                     Runtime.getRuntime().gc();
-                } catch (Exception ignored) {
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                    e.printStackTrace();
                 }
             }
         }
