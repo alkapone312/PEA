@@ -2,6 +2,7 @@ package TSP.implementations.forhuman;
 
 import TSP.algorithms.*;
 import TSP.algorithms.BranchAndBound.BranchAndBound;
+import TSP.algorithms.neighbors.SwapRandomNodesNeighbors;
 
 import java.util.Scanner;
 
@@ -10,7 +11,6 @@ public class HumanAlgorithmProvider implements AlgorithmProvider {
     public Algorithm getAlgorithm() {
         Scanner scanner = new Scanner(System.in);
         while (true) {
-
             System.out.println("Wybierz algorytm");
             System.out.println("1. BruteForce");
             System.out.println("2. Branch&Bound");
@@ -19,22 +19,24 @@ public class HumanAlgorithmProvider implements AlgorithmProvider {
             System.out.println("5. Wyjście");
             int choice = scanner.nextInt();
             switch (choice) {
-                case 1 -> {
+                case 1:
                     return new BruteForce();
-                }
-                case 2 -> {
+                case 2:
                     return new BranchAndBound();
-                }
-                case 3 -> {
+                case 3:
                     return new DynamicProgramming();
-                }
-                case 4 -> {
-                    return new TabuSearch();
-                }
-                case 5 -> {
+                case 4:
+                    System.out.println("Wybierz metode generowania sąsiadów");
+                    System.out.println("1. Generacja przez zamianę losowych miast");
+                    System.out.println("2. ");
+                    return switch (scanner.nextInt()) {
+                        case 1 -> new TabuSearch(new SwapRandomNodesNeighbors());
+                        case 2 -> new TabuSearch(new SwapRandomNodesNeighbors());
+                        default -> new TabuSearch(new SwapRandomNodesNeighbors());
+                    };
+                case 5:
                     return null;
-                }
-                default -> System.out.println("Nieprawidłowy wybór. Wybierz ponownie.");
+                default: System.out.println("Nieprawidłowy wybór. Wybierz ponownie.");
             }
         }
     }

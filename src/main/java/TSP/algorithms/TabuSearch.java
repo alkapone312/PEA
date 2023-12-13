@@ -1,11 +1,18 @@
 package TSP.algorithms;
 
+import TSP.algorithms.neighbors.NeighborGeneration;
 import TSP.data.Matrix;
 
 import java.util.*;
 
 public class TabuSearch implements Algorithm {
+    private final NeighborGeneration neighborGeneration;
+
     private boolean run = true;
+
+    public TabuSearch(NeighborGeneration neighborGeneration) {
+        this.neighborGeneration = neighborGeneration;
+    }
 
     @Override
     public AlgorithmResult runAlgorithm(Matrix matrix) {
@@ -27,7 +34,7 @@ public class TabuSearch implements Algorithm {
         // Główna pętla algorytmu
         while (run) {
             // Wygenerowanie sąsiadów rozwiązania
-            List<List<Integer>> neighbors = generateNeighbors(currentSolution, (int) (0.1 * numCities * numCities));
+            List<List<Integer>> neighbors = this.neighborGeneration.generateNeighbors(currentSolution, (int) (0.1 * numCities * numCities));
 
             // Wybór najlepszego sąsiada spośród tych, którzy nie są na liście tabu
             List<Integer> bestNeighbor = getBestNeighbor(neighbors, distanceMatrix, tabuList);
@@ -70,25 +77,6 @@ public class TabuSearch implements Algorithm {
         return solution;
     }
 
-    private List<List<Integer>> generateNeighbors(List<Integer> solution, int numberOfNeightbors) {
-        // Implementacja generowania sąsiadów (np. zamiana dwóch losowych miast)
-        // Poniżej przykład dla uproszczenia
-        List<List<Integer>> neighbors = new ArrayList<>();
-        Random random = new Random();
-
-        for (int i = 0; i < numberOfNeightbors; i++) { // Generowanie 5 sąsiadów dla uproszczenia
-            int index1 = random.nextInt(solution.size());
-            int index2 = random.nextInt(solution.size());
-
-            List<Integer> neighbor = new ArrayList<>(solution);
-            Collections.swap(neighbor, index1, index2);
-
-            neighbors.add(neighbor);
-        }
-
-        return neighbors;
-    }
-
     private List<Integer> getBestNeighbor(List<List<Integer>> neighbors, int[][] distanceMatrix, List<List<Integer>> tabuList) {
         int bestDistance = Integer.MAX_VALUE;
         List<Integer> bestNeighbor = null;
@@ -122,7 +110,7 @@ public class TabuSearch implements Algorithm {
 
     @Override
     public String getName() {
-        return "Tabu Search";
+        return "Tabu Search: " + this.neighborGeneration.getName();
     }
 
     @Override
