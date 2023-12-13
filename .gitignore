@@ -1,3 +1,5 @@
 # Project exclude paths
 /target/
 /tmp/
+report.log
+/dane/
