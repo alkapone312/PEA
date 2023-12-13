@@ -32,7 +32,7 @@ public class TSP {
         Algorithm algorithm;
         while ((algorithm = algorithmProvider.getAlgorithm()) != null) {
             while ((data = dataProvider.getData()) != null) {
-                System.out.println("Running for " + data.size);
+                System.out.println("Uruchomiono algorytm dla " + data.size + " wierzchołków");
                 try {
                     result = algorithmMeasurement.measureAlgorithm(algorithm, data);
                     reportGenerator.addToReport(result);

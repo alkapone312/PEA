@@ -12,12 +12,20 @@ import java.util.Scanner;
 public class HumanAlgorithmMeasurement extends AlgorithmMeasurement {
     public HumanAlgorithmMeasurement() {
         super(0);
+        setUpperTimeLimit(0);
     }
 
     @Override
     public MeasuredAlghorithmResult measureAlgorithm(Algorithm algorithm, Matrix data) throws IncorrectDataException, TimerException {
         if(getUpperTimeLimit() == 0) {
             setUpperTimeLimit(0);
+        } else {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Maksymalny czas wykonania algorytmu wynosi " + getUpperTimeLimit());
+            System.out.print("Czy chcesz go zmienić? [T/N]: ");
+            if(scanner.nextLine().charAt(0) == 'T') {
+                setUpperTimeLimit(0);
+            }
         }
 
         return super.measureAlgorithm(algorithm, data);
@@ -26,7 +34,7 @@ public class HumanAlgorithmMeasurement extends AlgorithmMeasurement {
     @Override
     public void setUpperTimeLimit(long upperTimeLimit) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Proszę podać czas zakończenia algorytmu w ms");
+        System.out.println("Proszę podać czas zakończenia algorytmu [ms]");
         super.setUpperTimeLimit(scanner.nextLong());
     }
 }

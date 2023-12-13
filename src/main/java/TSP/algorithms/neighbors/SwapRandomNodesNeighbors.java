@@ -26,6 +26,6 @@ public class SwapRandomNodesNeighbors implements NeighborGeneration {
 
     @Override
     public String getName() {
-        return "Swap two random nodes";
+        return "Zamiana losowych miast";
     }
 }
