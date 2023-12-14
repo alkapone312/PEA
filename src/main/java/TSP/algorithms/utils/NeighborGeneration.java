@@ -1,4 +1,4 @@
-package TSP.algorithms.neighbors;
+package TSP.algorithms.utils;
 
 import java.util.List;
 

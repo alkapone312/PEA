@@ -1,6 +1,8 @@
 package TSP.algorithms;
 
-import TSP.algorithms.neighbors.NeighborGeneration;
+import TSP.algorithms.utils.FirstSolutionGeneration;
+import TSP.algorithms.utils.NeighborGeneration;
+import TSP.algorithms.utils.RandomFirstSolutionGeneration;
 import TSP.data.Matrix;
 
 import java.util.*;
@@ -8,10 +10,16 @@ import java.util.*;
 public class TabuSearch implements Algorithm {
     private final NeighborGeneration neighborGeneration;
 
+    private final FirstSolutionGeneration firstSolutionGeneration;
+
     private boolean run = true;
 
-    public TabuSearch(NeighborGeneration neighborGeneration) {
+    public TabuSearch(
+            NeighborGeneration neighborGeneration,
+            FirstSolutionGeneration firstSolutionGeneration
+    ) {
         this.neighborGeneration = neighborGeneration;
+        this.firstSolutionGeneration = firstSolutionGeneration;
     }
 
     @Override
@@ -21,15 +29,16 @@ public class TabuSearch implements Algorithm {
         int[][] distanceMatrix = matrix.getDistanceMatrix();
         int numCities = distanceMatrix.length;
 
-        List<Integer> bestSolution = getRandomSolution(numCities);
+        List<Integer> bestSolution = firstSolutionGeneration.generateSolution(matrix);
 
         // Inicjalizacja rozwiązania początkowego (np. losowa permutacja miast)
-        List<Integer> currentSolution = getRandomSolution(numCities);
+        List<Integer> currentSolution = new ArrayList<>(bestSolution);
 
         // Inicjalizacja listy tabu
         List<List<Integer>> tabuList = new ArrayList<>();
 
         long iteration = 0;
+        long movesWithoutUpgrade = 0;
 
         // Główna pętla algorytmu
         while (run) {
@@ -41,10 +50,18 @@ public class TabuSearch implements Algorithm {
 
             // Zaktualizowanie rozwiązania
             currentSolution = bestNeighbor;
-            long tabuSize = (int)(0.4 * numCities * numCities);
+            long tabuSize = numCities/4;
 
             if(calculateTotalDistance(currentSolution, distanceMatrix) < calculateTotalDistance(bestSolution, distanceMatrix)) {
                 bestSolution = currentSolution;
+                movesWithoutUpgrade = 0;
+            } else {
+                movesWithoutUpgrade++;
+            }
+
+            if(movesWithoutUpgrade == tabuSize * tabuSize) {
+                currentSolution = neighborGeneration.generateNeighbors(currentSolution, 1).get(0);
+                movesWithoutUpgrade = 0;
             }
 
             // Dodanie ruchu do listy tabu

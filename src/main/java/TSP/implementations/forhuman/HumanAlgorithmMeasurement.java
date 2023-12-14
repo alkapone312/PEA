@@ -23,7 +23,8 @@ public class HumanAlgorithmMeasurement extends AlgorithmMeasurement {
             Scanner scanner = new Scanner(System.in);
             System.out.println("Maksymalny czas wykonania algorytmu wynosi " + getUpperTimeLimit());
             System.out.print("Czy chcesz go zmienić? [T/N]: ");
-            if(scanner.nextLine().charAt(0) == 'T') {
+            char choice = scanner.nextLine().charAt(0);
+            if(choice == 'T' || choice == 't') {
                 setUpperTimeLimit(0);
             }
         }

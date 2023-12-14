@@ -2,7 +2,7 @@ package TSP.implementations.forhuman;
 
 import TSP.algorithms.*;
 import TSP.algorithms.BranchAndBound.BranchAndBound;
-import TSP.algorithms.neighbors.SwapRandomNodesNeighbors;
+import TSP.algorithms.utils.*;
 
 import java.util.Scanner;
 
@@ -28,12 +28,19 @@ public class HumanAlgorithmProvider implements AlgorithmProvider {
                 case 4:
                     System.out.println("Wybierz metode generowania sąsiadów");
                     System.out.println("1. Generacja przez zamianę losowych miast");
-                    System.out.println("2. ");
-                    return switch (scanner.nextInt()) {
-                        case 1 -> new TabuSearch(new SwapRandomNodesNeighbors());
-                        case 2 -> new TabuSearch(new SwapRandomNodesNeighbors());
-                        default -> new TabuSearch(new SwapRandomNodesNeighbors());
+                    System.out.println("2. Generacja przez wstawienie losowego miasta");
+                    NeighborGeneration neighborGeneration = switch (scanner.nextInt()) {
+                        case 1 -> new SwapRandomNodesNeighbors();
+                        default -> new RandomNodeInsertion();
                     };
+                    System.out.println("Wybierz metode tworzenia rozwiązania początkowego");
+                    System.out.println("1. Metoda zachłanna");
+                    System.out.println("2. Metoda losowa");
+                    FirstSolutionGeneration firstSolutionGeneration = switch (scanner.nextInt()) {
+                        case 1 -> new GreedyFirstSolutionGeneration();
+                        default -> new RandomFirstSolutionGeneration();
+                    };
+                    return new TabuSearch(neighborGeneration, firstSolutionGeneration);
                 case 5:
                     return null;
                 default: System.out.println("Nieprawidłowy wybór. Wybierz ponownie.");
