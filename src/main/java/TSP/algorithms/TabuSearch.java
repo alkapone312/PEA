@@ -43,7 +43,7 @@ public class TabuSearch implements Algorithm {
         // Główna pętla algorytmu
         while (run) {
             // Wygenerowanie sąsiadów rozwiązania
-            List<List<Integer>> neighbors = this.neighborGeneration.generateNeighbors(currentSolution, (int) (0.1 * numCities * numCities));
+            List<List<Integer>> neighbors = this.neighborGeneration.generateNeighbors(currentSolution, numCities * numCities / 10);
 
             // Wybór najlepszego sąsiada spośród tych, którzy nie są na liście tabu
             List<Integer> bestNeighbor = getBestNeighbor(neighbors, distanceMatrix, tabuList);
@@ -82,16 +82,6 @@ public class TabuSearch implements Algorithm {
                 calculateTotalDistance(bestSolution, distanceMatrix),
                 getName()
         );
-    }
-
-    private List<Integer> getRandomSolution(int numCities) {
-        List<Integer> solution = new ArrayList<>();
-        for (int i = 0; i < numCities; i++) {
-            solution.add(i);
-        }
-        Collections.shuffle(solution);
-
-        return solution;
     }
 
     private List<Integer> getBestNeighbor(List<List<Integer>> neighbors, int[][] distanceMatrix, List<List<Integer>> tabuList) {
