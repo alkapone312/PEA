@@ -13,6 +13,11 @@ public class FromFileReader {
         System.out.println("Podaj nazwę pliku z danymi:");
         String fileName = scanner.nextLine();
 
+        return loadFromFile(fileName);
+    }
+
+    public Matrix loadFromFile(String fileName) {
+
         int[][] distanceMatrix = null;
         int actualRow = 0;
         int actualCol = 0;
