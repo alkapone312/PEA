@@ -1,5 +1,6 @@
 package TSP.algorithms;
 
+import TSP.algorithms.utils.AlgorithmObserver;
 import TSP.algorithms.utils.FirstSolutionGeneration;
 import TSP.algorithms.utils.NeighborGeneration;
 import TSP.algorithms.utils.RandomFirstSolutionGeneration;
@@ -13,6 +14,8 @@ public class TabuSearch implements Algorithm {
     private final FirstSolutionGeneration firstSolutionGeneration;
 
     private boolean run = true;
+
+    AlgorithmObserver observer;
 
     public TabuSearch(
             NeighborGeneration neighborGeneration,
@@ -54,6 +57,7 @@ public class TabuSearch implements Algorithm {
 
             if(calculateTotalDistance(currentSolution, distanceMatrix) < calculateTotalDistance(bestSolution, distanceMatrix)) {
                 bestSolution = currentSolution;
+                observer.invoke(currentSolution, calculateTotalDistance(bestSolution, distanceMatrix));
                 movesWithoutUpgrade = 0;
             } else {
                 movesWithoutUpgrade++;
@@ -72,7 +76,6 @@ public class TabuSearch implements Algorithm {
 
             // Ocena i wyświetlenie aktualnej trasy
             int totalDistance = calculateTotalDistance(currentSolution, distanceMatrix);
-            System.out.println("Iteration " + iteration + ": Total Distance = " + totalDistance);
             iteration++;
         }
 
@@ -123,5 +126,12 @@ public class TabuSearch implements Algorithm {
     @Override
     public void stopExecution() {
         run = false;
+    }
+
+    @Override
+    public void registerObserver(String name, AlgorithmObserver observer) {
+        if(name.equals("BestSolutionObserver")) {
+            this.observer = observer;
+        }
     }
 }

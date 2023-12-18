@@ -1,5 +1,6 @@
 package TSP.algorithms;
 
+import TSP.algorithms.utils.AlgorithmObserver;
 import TSP.data.Matrix;
 
 public interface Algorithm {
@@ -15,7 +16,12 @@ public interface Algorithm {
     String getName();
 
     /**
-     *
+     * Stop the execution of an algorithm
      */
     void stopExecution();
+
+    /**
+     * Add observer that will watch for some values
+     */
+    void registerObserver(String name, AlgorithmObserver observer);
 }

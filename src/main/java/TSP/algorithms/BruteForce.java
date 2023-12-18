@@ -1,5 +1,6 @@
 package TSP.algorithms;
 
+import TSP.algorithms.utils.AlgorithmObserver;
 import TSP.data.Matrix;
 
 import java.util.Arrays;
@@ -44,6 +45,10 @@ public class BruteForce implements Algorithm {
     @Override
     public void stopExecution() {
         this.run = false;
+    }
+
+    @Override
+    public void registerObserver(String name, AlgorithmObserver observer) {
     }
 
     private int calculateTourDistance(int[] tour, Matrix data, int minDistance) {

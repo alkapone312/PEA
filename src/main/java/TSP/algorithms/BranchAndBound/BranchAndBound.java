@@ -3,6 +3,7 @@ package TSP.algorithms.BranchAndBound;
 import TSP.algorithms.Algorithm;
 import TSP.algorithms.AlgorithmResult;
 import TSP.algorithms.IncorrectDataException;
+import TSP.algorithms.utils.AlgorithmObserver;
 import TSP.data.Matrix;
 import TSP.menu.TSP;
 
@@ -120,5 +121,9 @@ public class BranchAndBound implements Algorithm {
     @Override
     public void stopExecution() {
         run = false;
+    }
+
+    @Override
+    public void registerObserver(String name, AlgorithmObserver observer) {
     }
 }

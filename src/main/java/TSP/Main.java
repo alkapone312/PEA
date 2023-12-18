@@ -1,24 +1,16 @@
 package TSP;
 
-import TSP.algorithms.Algorithm;
+import TSP.algorithms.*;
 import TSP.algorithms.BranchAndBound.BranchAndBound;
-import TSP.algorithms.BruteForce;
-import TSP.algorithms.DynamicProgramming;
-import TSP.algorithms.TabuSearch;
-import TSP.algorithms.utils.GreedyFirstSolutionGeneration;
-import TSP.algorithms.utils.InverseRandomSubrouteGeneration;
-import TSP.algorithms.utils.RandomNodeInsertion;
-import TSP.algorithms.utils.SwapRandomNodesNeighbors;
+import TSP.algorithms.utils.*;
 import TSP.file.ToFileWriter;
 import TSP.implementations.automated.CSVReportGenerator;
 import TSP.implementations.automated.RandomDataProvider;
 import TSP.implementations.automated.SequenceFileDataProvider;
 import TSP.implementations.automated.StubAlgorithmProvider;
-import TSP.implementations.forhuman.HumanAlgorithmMeasurement;
-import TSP.implementations.forhuman.HumanAlgorithmProvider;
-import TSP.implementations.forhuman.HumanDataProvider;
-import TSP.implementations.forhuman.HumanReadableReportGenerator;
+import TSP.implementations.forhuman.*;
 import TSP.measurement.AlgorithmMeasurement;
+import TSP.measurement.AlgorithmMeasurementWithBestSolutionTrack;
 import TSP.menu.TSP;
 import TSP.utils.ReportGenerator;
 
@@ -51,17 +43,112 @@ public class Main {
         automaticTabuSearchTest(
                 "dane/niezupelne/ftv47.atsp",
                 120,
-                "report-tabu-reverse-subroute-47.log"
+                "report-tabu-random-swap-47.log",
+                new SwapRandomNodesNeighbors()
         );
         automaticTabuSearchTest(
                 "dane/niezupelne/ftv170.atsp",
                 240,
-                "report-tabu-reverse-subroute-170.log"
+                "report-tabu-random-swap-170.log",
+                new SwapRandomNodesNeighbors()
         );
         automaticTabuSearchTest(
                 "dane/niezupelne/rbg403.atsp",
                 360,
-                "report-tabu-reverse-subroute-403.log"
+                "report-tabu-random-swap-403.log",
+                new SwapRandomNodesNeighbors()
+        );
+        automaticTabuSearchTest(
+                "dane/niezupelne/ftv47.atsp",
+                120,
+                "report-random-insert-47.log",
+                new RandomNodeInsertion()
+        );
+        automaticTabuSearchTest(
+                "dane/niezupelne/ftv170.atsp",
+                240,
+                "report-random-insert-170.log",
+                new RandomNodeInsertion()
+        );
+        automaticTabuSearchTest(
+                "dane/niezupelne/rbg403.atsp",
+                360,
+                "report-random-insert-403.log",
+                new RandomNodeInsertion()
+        );
+        automaticTabuSearchTest(
+                "dane/niezupelne/ftv47.atsp",
+                120,
+                "report-tabu-reverse-subroute-47.log",
+                new InverseRandomSubrouteGeneration()
+        );
+        automaticTabuSearchTest(
+                "dane/niezupelne/ftv170.atsp",
+                240,
+                "report-tabu-reverse-subroute-170.log",
+                new InverseRandomSubrouteGeneration()
+        );
+        automaticTabuSearchTest(
+                "dane/niezupelne/rbg403.atsp",
+                360,
+                "report-tabu-reverse-subroute-403.log",
+                new InverseRandomSubrouteGeneration()
+        );
+
+
+        automaticSimulatedAnnealing(
+                "dane/niezupelne/ftv47.atsp",
+                120,
+                0.99,
+                "report-sa-47-0.99.log"
+        );
+        automaticSimulatedAnnealing(
+                "dane/niezupelne/ftv170.atsp",
+                240,
+                0.99,
+                "report-sa-170-0.99.log"
+        );
+        automaticSimulatedAnnealing(
+                "dane/niezupelne/rbg403.atsp",
+                360,
+                0.99,
+                "report-sa-403-0.99.log"
+        );
+        automaticSimulatedAnnealing(
+                "dane/niezupelne/ftv47.atsp",
+                120,
+                0.999,
+                "report-sa-47-0.999.log"
+        );
+        automaticSimulatedAnnealing(
+                "dane/niezupelne/ftv170.atsp",
+                240,
+                0.999,
+                "report-sa-170-0.999.log"
+        );
+        automaticSimulatedAnnealing(
+                "dane/niezupelne/rbg403.atsp",
+                360,
+                0.999,
+                "report-sa-403-0.999.log"
+        );
+        automaticSimulatedAnnealing(
+                "dane/niezupelne/ftv47.atsp",
+                120,
+                0.9999,
+                "report-sa-47-0.9999.log"
+        );
+        automaticSimulatedAnnealing(
+                "dane/niezupelne/ftv170.atsp",
+                240,
+                0.9999,
+                "report-sa-170-0.9999.log"
+        );
+        automaticSimulatedAnnealing(
+                "dane/niezupelne/rbg403.atsp",
+                360,
+                0.9999,
+                "report-sa-403-0.9999.log"
         );
     }
 
@@ -142,12 +229,13 @@ public class Main {
     public static void automaticTabuSearchTest(
             String filename,
             int maxSecondsLimit,
-            String reportName
+            String reportName,
+            NeighborGeneration generation
     ) throws IOException {
-        ReportGenerator reportGenerator = new HumanReadableReportGenerator();
+        ReportGenerator reportGenerator = new HumanReadableReportWithBestSolutionTrack();
         ArrayList<Algorithm> algorithms = new ArrayList<>();
         algorithms.add(new TabuSearch(
-                new InverseRandomSubrouteGeneration(),
+                generation,
                 new GreedyFirstSolutionGeneration()
         ));
         String[] files = new String[10];
@@ -156,7 +244,32 @@ public class Main {
                 new SequenceFileDataProvider(files),
                 new StubAlgorithmProvider(algorithms),
                 reportGenerator,
-                new AlgorithmMeasurement((long) maxSecondsLimit*1000)
+                new AlgorithmMeasurementWithBestSolutionTrack((long) maxSecondsLimit*1000)
+        );
+        tsp.run();
+        new ToFileWriter(reportName).write(reportGenerator.generateReport());
+    }
+
+    public static void automaticSimulatedAnnealing(
+            String filename,
+            int maxSecondsLimit,
+            double coolingFactor,
+            String reportName
+    ) throws IOException {
+        ReportGenerator reportGenerator = new HumanReadableReportWithBestSolutionTrack();
+        ArrayList<Algorithm> algorithms = new ArrayList<>();
+        algorithms.add(new SimulatedAnnealing(
+                new SwapRandomNodesNeighbors(),
+                new GreedyFirstSolutionGeneration(),
+                coolingFactor
+        ));
+        String[] files = new String[10];
+        Arrays.fill(files, filename);
+        TSP tsp = new TSP(
+                new SequenceFileDataProvider(files),
+                new StubAlgorithmProvider(algorithms),
+                reportGenerator,
+                new AlgorithmMeasurementWithBestSolutionTrack((long) maxSecondsLimit*1000)
         );
         tsp.run();
         new ToFileWriter(reportName).write(reportGenerator.generateReport());

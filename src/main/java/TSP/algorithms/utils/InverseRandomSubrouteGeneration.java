@@ -40,6 +40,6 @@ public class InverseRandomSubrouteGeneration implements NeighborGeneration {
 
     @Override
     public String getName() {
-        return null;
+        return "Odwrócenie losowej ścieżki";
     }
 }

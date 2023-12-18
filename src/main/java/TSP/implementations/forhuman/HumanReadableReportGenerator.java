@@ -25,7 +25,7 @@ public class HumanReadableReportGenerator implements ReportGenerator {
         results.add(result);
     }
 
-    private String buildOutputString(MeasuredAlghorithmResult result) {
+    protected String buildOutputString(MeasuredAlghorithmResult result) {
         return "Algorytm: " +
                 result.getAlgorithmResult().getAlgorithmName() +
                 "\n" +

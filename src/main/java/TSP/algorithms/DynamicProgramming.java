@@ -1,5 +1,6 @@
 package TSP.algorithms;
 
+import TSP.algorithms.utils.AlgorithmObserver;
 import TSP.data.Matrix;
 
 import java.util.Arrays;
@@ -88,5 +89,9 @@ public class DynamicProgramming implements Algorithm {
     @Override
     public void stopExecution() {
         run = false;
+    }
+
+    @Override
+    public void registerObserver(String name, AlgorithmObserver observer) {
     }
 }
