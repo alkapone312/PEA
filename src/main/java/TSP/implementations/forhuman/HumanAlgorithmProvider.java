@@ -2,6 +2,9 @@ package TSP.implementations.forhuman;
 
 import TSP.algorithms.*;
 import TSP.algorithms.BranchAndBound.BranchAndBound;
+import TSP.algorithms.Genetic.Genetic;
+import TSP.algorithms.Genetic.OrderedCrossover;
+import TSP.algorithms.Genetic.SwapMutation;
 import TSP.algorithms.utils.*;
 
 import java.util.Scanner;
@@ -18,7 +21,8 @@ public class HumanAlgorithmProvider implements AlgorithmProvider {
             System.out.println("3. Dynamic programming");
             System.out.println("4. Tabu Search");
             System.out.println("5. Symulowane wyżarzanie");
-            System.out.println("6. Wyjście");
+            System.out.println("6. Algorytm genetyczny");
+            System.out.println("7. Wyjście");
             int choice = scanner.nextInt();
             switch (choice) {
                 case 1:
@@ -36,6 +40,13 @@ public class HumanAlgorithmProvider implements AlgorithmProvider {
                             getDouble("Podaj współczynnik schładzania:")
                     );
                 case 6:
+                    return new Genetic(
+                            new OrderedCrossover(0.8),
+                            new SwapMutation(0.01),
+                            getInt("Podaj rozmiar populacji:"),
+                            getInt("Podaj liczbę generacji:")
+                    );
+                case 7:
                     return null;
                 default: System.out.println("Nieprawidłowy wybór. Wybierz ponownie.");
             }
@@ -66,5 +77,11 @@ public class HumanAlgorithmProvider implements AlgorithmProvider {
         System.out.println(message);
 
         return scanner.nextDouble();
+    }
+
+    private int getInt(String message) {
+        System.out.println(message);
+
+        return scanner.nextInt();
     }
 }

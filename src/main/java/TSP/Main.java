@@ -20,8 +20,8 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        Main.doAutomated();
-//        Main.doHuman();
+//        Main.doAutomated();
+        Main.doHuman();
     }
 
     public static void doHuman() throws IOException {
@@ -40,116 +40,116 @@ public class Main {
 //        automaticBruteForceTest();
 //        automaticDynamicProgrammingTest();
 //        automaticBranchAndBoundTest();
-        automaticTabuSearchTest(
-                "dane/niezupelne/ftv47.atsp",
-                120,
-                "report-tabu-random-swap-47.log",
-                new SwapRandomNodesNeighbors()
-        );
-        automaticTabuSearchTest(
-                "dane/niezupelne/ftv170.atsp",
-                240,
-                "report-tabu-random-swap-170.log",
-                new SwapRandomNodesNeighbors()
-        );
-        automaticTabuSearchTest(
-                "dane/niezupelne/rbg403.atsp",
-                360,
-                "report-tabu-random-swap-403.log",
-                new SwapRandomNodesNeighbors()
-        );
-        automaticTabuSearchTest(
-                "dane/niezupelne/ftv47.atsp",
-                120,
-                "report-random-insert-47.log",
-                new RandomNodeInsertion()
-        );
-        automaticTabuSearchTest(
-                "dane/niezupelne/ftv170.atsp",
-                240,
-                "report-random-insert-170.log",
-                new RandomNodeInsertion()
-        );
-        automaticTabuSearchTest(
-                "dane/niezupelne/rbg403.atsp",
-                360,
-                "report-random-insert-403.log",
-                new RandomNodeInsertion()
-        );
-        automaticTabuSearchTest(
-                "dane/niezupelne/ftv47.atsp",
-                120,
-                "report-tabu-reverse-subroute-47.log",
-                new InverseRandomSubrouteGeneration()
-        );
-        automaticTabuSearchTest(
-                "dane/niezupelne/ftv170.atsp",
-                240,
-                "report-tabu-reverse-subroute-170.log",
-                new InverseRandomSubrouteGeneration()
-        );
-        automaticTabuSearchTest(
-                "dane/niezupelne/rbg403.atsp",
-                360,
-                "report-tabu-reverse-subroute-403.log",
-                new InverseRandomSubrouteGeneration()
-        );
-
-
-        automaticSimulatedAnnealing(
-                "dane/niezupelne/ftv47.atsp",
-                120,
-                0.99,
-                "report-sa-47-0.99.log"
-        );
-        automaticSimulatedAnnealing(
-                "dane/niezupelne/ftv170.atsp",
-                240,
-                0.99,
-                "report-sa-170-0.99.log"
-        );
-        automaticSimulatedAnnealing(
-                "dane/niezupelne/rbg403.atsp",
-                360,
-                0.99,
-                "report-sa-403-0.99.log"
-        );
-        automaticSimulatedAnnealing(
-                "dane/niezupelne/ftv47.atsp",
-                120,
-                0.999,
-                "report-sa-47-0.999.log"
-        );
-        automaticSimulatedAnnealing(
-                "dane/niezupelne/ftv170.atsp",
-                240,
-                0.999,
-                "report-sa-170-0.999.log"
-        );
-        automaticSimulatedAnnealing(
-                "dane/niezupelne/rbg403.atsp",
-                360,
-                0.999,
-                "report-sa-403-0.999.log"
-        );
-        automaticSimulatedAnnealing(
-                "dane/niezupelne/ftv47.atsp",
-                120,
-                0.9999,
-                "report-sa-47-0.9999.log"
-        );
-        automaticSimulatedAnnealing(
-                "dane/niezupelne/ftv170.atsp",
-                240,
-                0.9999,
-                "report-sa-170-0.9999.log"
-        );
-        automaticSimulatedAnnealing(
-                "dane/niezupelne/rbg403.atsp",
-                360,
-                0.9999,
-                "report-sa-403-0.9999.log"
-        );
+//        automaticTabuSearchTest(
+//                "dane/niezupelne/ftv47.atsp",
+//                120,
+//                "report-tabu-random-swap-47.log",
+//                new SwapRandomNodesNeighbors()
+//        );
+//        automaticTabuSearchTest(
+//                "dane/niezupelne/ftv170.atsp",
+//                240,
+//                "report-tabu-random-swap-170.log",
+//                new SwapRandomNodesNeighbors()
+//        );
+//        automaticTabuSearchTest(
+//                "dane/niezupelne/rbg403.atsp",
+//                360,
+//                "report-tabu-random-swap-403.log",
+//                new SwapRandomNodesNeighbors()
+//        );
+//        automaticTabuSearchTest(
+//                "dane/niezupelne/ftv47.atsp",
+//                120,
+//                "report-random-insert-47.log",
+//                new RandomNodeInsertion()
+//        );
+//        automaticTabuSearchTest(
+//                "dane/niezupelne/ftv170.atsp",
+//                240,
+//                "report-random-insert-170.log",
+//                new RandomNodeInsertion()
+//        );
+//        automaticTabuSearchTest(
+//                "dane/niezupelne/rbg403.atsp",
+//                360,
+//                "report-random-insert-403.log",
+//                new RandomNodeInsertion()
+//        );
+//        automaticTabuSearchTest(
+//                "dane/niezupelne/ftv47.atsp",
+//                120,
+//                "report-tabu-reverse-subroute-47.log",
+//                new InverseRandomSubrouteGeneration()
+//        );
+//        automaticTabuSearchTest(
+//                "dane/niezupelne/ftv170.atsp",
+//                240,
+//                "report-tabu-reverse-subroute-170.log",
+//                new InverseRandomSubrouteGeneration()
+//        );
+//        automaticTabuSearchTest(
+//                "dane/niezupelne/rbg403.atsp",
+//                360,
+//                "report-tabu-reverse-subroute-403.log",
+//                new InverseRandomSubrouteGeneration()
+//        );
+//
+//
+//        automaticSimulatedAnnealing(
+//                "dane/niezupelne/ftv47.atsp",
+//                120,
+//                0.99,
+//                "report-sa-47-0.99.log"
+//        );
+//        automaticSimulatedAnnealing(
+//                "dane/niezupelne/ftv170.atsp",
+//                240,
+//                0.99,
+//                "report-sa-170-0.99.log"
+//        );
+//        automaticSimulatedAnnealing(
+//                "dane/niezupelne/rbg403.atsp",
+//                360,
+//                0.99,
+//                "report-sa-403-0.99.log"
+//        );
+//        automaticSimulatedAnnealing(
+//                "dane/niezupelne/ftv47.atsp",
+//                120,
+//                0.999,
+//                "report-sa-47-0.999.log"
+//        );
+//        automaticSimulatedAnnealing(
+//                "dane/niezupelne/ftv170.atsp",
+//                240,
+//                0.999,
+//                "report-sa-170-0.999.log"
+//        );
+//        automaticSimulatedAnnealing(
+//                "dane/niezupelne/rbg403.atsp",
+//                360,
+//                0.999,
+//                "report-sa-403-0.999.log"
+//        );
+//        automaticSimulatedAnnealing(
+//                "dane/niezupelne/ftv47.atsp",
+//                120,
+//                0.9999,
+//                "report-sa-47-0.9999.log"
+//        );
+//        automaticSimulatedAnnealing(
+//                "dane/niezupelne/ftv170.atsp",
+//                240,
+//                0.9999,
+//                "report-sa-170-0.9999.log"
+//        );
+//        automaticSimulatedAnnealing(
+//                "dane/niezupelne/rbg403.atsp",
+//                360,
+//                0.9999,
+//                "report-sa-403-0.9999.log"
+//        );
     }
 
     public static void automaticBruteForceTest() throws IOException {
