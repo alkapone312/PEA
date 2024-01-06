@@ -6,10 +6,7 @@ import TSP.algorithms.IncorrectDataException;
 import TSP.algorithms.utils.AlgorithmObserver;
 import TSP.data.Matrix;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class Genetic implements Algorithm {
     private AlgorithmObserver observer;
@@ -18,17 +15,22 @@ public class Genetic implements Algorithm {
 
     private Crossover crossover;
     private Mutation mutation;
+    private Selection selection;
     private double populationSize;
     private double numberOfGenerations;
+
+    private Tour bestSolution = null;
 
     public Genetic(
             Crossover crossover,
             Mutation mutation,
+            Selection selection,
             int populationSize,
             int numberOfGenerations
     ) {
         this.crossover = crossover;
         this.mutation = mutation;
+        this.selection = selection;
         this.populationSize = populationSize;
         this.numberOfGenerations = numberOfGenerations;
     }
@@ -39,35 +41,62 @@ public class Genetic implements Algorithm {
         distanceMatrix = matrix.getDistanceMatrix();
 
         // create population
-        List<List<Integer>> population = new ArrayList<>();
+        List<Tour> population = createPopulation();
+        bestSolution = getBestTour(population);
+
+        //mutate and crossover
+        while (run) {
+            population = createNewPopulation(population);
+            population = crossover.crossover(population);
+            population = mutation.mutate(population);
+            recalculateDistances(population);
+
+            Tour bestTour = getBestTour(population);
+            if(bestSolution.getCost() > bestTour.getCost()) {
+                bestSolution = bestTour.clone();
+                observer.invoke(bestSolution.getTour(), bestSolution.getCost());
+            }
+        }
+
+        return new AlgorithmResult(
+            matrix.size,
+            Arrays.stream(bestSolution.getTour().toArray(new Integer[0])).mapToInt(Integer::intValue).toArray(),
+            bestSolution.getCost(),
+            getName()
+        );
+    }
+
+    private List<Tour> createPopulation() {
+        List<Tour> population = new ArrayList<>();
         for (int i = 0; i < populationSize; i++) {
             List<Integer> chromosome = new ArrayList<>();
             for (int j = 0; j < distanceMatrix.length; j++) {
                 chromosome.add(j);
             }
             Collections.shuffle(chromosome);
-            population.add(chromosome);
+            population.add(new Tour(chromosome, calculateTotalDistance(chromosome)));
         }
 
-        //mutate and crossover
-        for (int i = 0; i < numberOfGenerations; i++) {
-            if(!run) {
-                break;
-            }
-            population = crossover.crossover(population);
-            population = mutation.mutate(population);
-            sortByFitness(population);
+        return population;
+    }
+
+    private List<Tour> createNewPopulation(List<Tour> population) {
+        List<Tour> newPopulation = new ArrayList<>();
+        for(int i = 0; i < population.size(); i++) {
+            newPopulation.add(selection.select(population));
         }
 
-        // The best tour is the first tour in the sorted population
-        List<Integer> bestChromosome = population.get(0);
+        return newPopulation;
+    }
 
-        return new AlgorithmResult(
-            matrix.size,
-            Arrays.stream(bestChromosome.toArray(new Integer[0])).mapToInt(Integer::intValue).toArray(),
-            calculateTotalDistance(bestChromosome),
-            getName()
-        );
+    private void recalculateDistances(List<Tour> population) {
+        for(Tour tour : population) {
+            tour.setCost(calculateTotalDistance(tour.getTour()));
+        }
+    }
+
+    private Tour getBestTour(List<Tour> population) {
+        return Collections.min(population, Comparator.comparingInt(Tour::getCost));
     }
 
     private void sortByFitness(List<List<Integer>> population) {

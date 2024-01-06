@@ -5,6 +5,7 @@ import TSP.algorithms.BranchAndBound.BranchAndBound;
 import TSP.algorithms.Genetic.Genetic;
 import TSP.algorithms.Genetic.OrderedCrossover;
 import TSP.algorithms.Genetic.SwapMutation;
+import TSP.algorithms.Genetic.TournamentSelection;
 import TSP.algorithms.utils.*;
 
 import java.util.Scanner;
@@ -43,6 +44,7 @@ public class HumanAlgorithmProvider implements AlgorithmProvider {
                     return new Genetic(
                             new OrderedCrossover(0.8),
                             new SwapMutation(0.01),
+                            new TournamentSelection(),
                             getInt("Podaj rozmiar populacji:"),
                             getInt("Podaj liczbę generacji:")
                     );

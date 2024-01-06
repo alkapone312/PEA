@@ -14,11 +14,11 @@ public class SwapMutation implements Mutation {
     }
 
     @Override
-    public List<List<Integer>> mutate(List<List<Integer>> population) {
-        List<List<Integer>> mutatedPopulation = new ArrayList<>(population);
-        for (List<Integer> tour : mutatedPopulation) {
+    public List<Tour> mutate(List<Tour> population) {
+        List<Tour> mutatedPopulation = new ArrayList<>(population);
+        for (Tour tour : mutatedPopulation) {
             if (Math.random() < mutationFactor) {
-                int tourSize = tour.size();
+                int tourSize = tour.getTour().size();
                 int pos1 = getRandomPosition(tourSize);
                 int pos2 = getRandomPosition(tourSize);
 
@@ -28,7 +28,7 @@ public class SwapMutation implements Mutation {
                 }
 
                 // Swap the cities at pos1 and pos2
-                Collections.swap(tour, pos1, pos2);
+                Collections.swap(tour.getTour(), pos1, pos2);
             }
         }
 

@@ -5,24 +5,26 @@ import java.util.List;
 import java.util.Random;
 
 public class OrderedCrossover implements Crossover {
-    public OrderedCrossover(double crossoverFactor) {
+    private double crossoverFactor;
 
+    public OrderedCrossover(double crossoverFactor) {
+        this.crossoverFactor = crossoverFactor;
     }
 
     @Override
-    public List<List<Integer>> crossover(List<List<Integer>> population) {
-        List<List<Integer>> crossedPopulation = new ArrayList<>();
+    public List<Tour> crossover(List<Tour> population) {
+        List<Tour> crossedPopulation = new ArrayList<>();
 
         for (int i = 0; i < population.size() - 1; i += 2) {
-            List<Integer> parent1 = population.get(i);
-            List<Integer> parent2 = population.get(i + 1);
+            List<Integer> parent1 = population.get(i).getTour();
+            List<Integer> parent2 = population.get(i + 1).getTour();
 
             // Perform Ordered Crossover
             List<Integer> child1 = orderedCrossover(parent1, parent2);
             List<Integer> child2 = orderedCrossover(parent2, parent1);
 
-            crossedPopulation.add(child1);
-            crossedPopulation.add(child2);
+            crossedPopulation.add(new Tour(child1));
+            crossedPopulation.add(new Tour(child2));
         }
 
         // Replace the old population with the new one
@@ -58,7 +60,7 @@ public class OrderedCrossover implements Crossover {
             }
         }
 
-        return new ArrayList<Integer>(toList(child));
+        return new ArrayList<>(toList(child));
     }
 
     private static int getRandomPosition(int maxValue) {
