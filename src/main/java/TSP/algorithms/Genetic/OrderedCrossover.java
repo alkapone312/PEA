@@ -18,16 +18,18 @@ public class OrderedCrossover implements Crossover {
         for (int i = 0; i < population.size() - 1; i += 2) {
             List<Integer> parent1 = population.get(i).getTour();
             List<Integer> parent2 = population.get(i + 1).getTour();
-
-            // Perform Ordered Crossover
-            List<Integer> child1 = orderedCrossover(parent1, parent2);
-            List<Integer> child2 = orderedCrossover(parent2, parent1);
-
-            crossedPopulation.add(new Tour(child1));
-            crossedPopulation.add(new Tour(child2));
+            // Make use of crossover factor
+            if(new Random().nextDouble() < crossoverFactor) {
+                // Perform Ordered Crossover
+                crossedPopulation.add(new Tour(orderedCrossover(parent1, parent2)));
+                crossedPopulation.add(new Tour(orderedCrossover(parent2, parent1)));
+            } else {
+                crossedPopulation.add(new Tour(parent1));
+                crossedPopulation.add(new Tour(parent2));
+            }
         }
 
-        // Replace the old population with the new one
+        // Return new population
         return crossedPopulation;
     }
 

@@ -25,33 +25,26 @@ public class HumanAlgorithmProvider implements AlgorithmProvider {
             System.out.println("6. Algorytm genetyczny");
             System.out.println("7. Wyjście");
             int choice = scanner.nextInt();
-            switch (choice) {
-                case 1:
-                    return new BruteForce();
-                case 2:
-                    return new BranchAndBound();
-                case 3:
-                    return new DynamicProgramming();
-                case 4:
-                    return new TabuSearch(getNeighborGeneration(), getFirstSolutionGeneration());
-                case 5:
-                    return new SimulatedAnnealing(
-                            getNeighborGeneration(),
-                            getFirstSolutionGeneration(),
-                            getDouble("Podaj współczynnik schładzania:")
-                    );
-                case 6:
-                    return new Genetic(
-                            new OrderedCrossover(0.8),
-                            new SwapMutation(0.01),
-                            new TournamentSelection(),
-                            getInt("Podaj rozmiar populacji:"),
-                            getInt("Podaj liczbę generacji:")
-                    );
-                case 7:
-                    return null;
-                default: System.out.println("Nieprawidłowy wybór. Wybierz ponownie.");
-            }
+            Algorithm algorithm = switch (choice) {
+                case 1 -> new BruteForce();
+                case 2 -> new BranchAndBound();
+                case 3 -> new DynamicProgramming();
+                case 4 -> new TabuSearch(getNeighborGeneration(), getFirstSolutionGeneration());
+                case 5 -> new SimulatedAnnealing(
+                        getNeighborGeneration(),
+                        getFirstSolutionGeneration(),
+                        getDouble("Podaj współczynnik schładzania:")
+                );
+                case 6 -> new Genetic(
+                        new OrderedCrossover(0.8),
+                        new SwapMutation(0.01),
+                        new TournamentSelection(),
+                        getInt("Podaj rozmiar populacji:")
+                );
+                default -> null;
+            };
+
+            return algorithm;
         }
     }
 
