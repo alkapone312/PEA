@@ -2,6 +2,7 @@ package TSP;
 
 import TSP.algorithms.*;
 import TSP.algorithms.BranchAndBound.BranchAndBound;
+import TSP.algorithms.Genetic.*;
 import TSP.algorithms.utils.*;
 import TSP.file.ToFileWriter;
 import TSP.implementations.automated.CSVReportGenerator;
@@ -20,8 +21,8 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-//        Main.doAutomated();
-        Main.doHuman();
+        Main.doAutomated();
+//        Main.doHuman();
     }
 
     public static void doHuman() throws IOException {
@@ -150,6 +151,338 @@ public class Main {
 //                0.9999,
 //                "report-sa-403-0.9999.log"
 //        );
+        automaticGenetic(
+                new OrderedCrossover(0.8),
+                new SwapMutation(0.01),
+                100,
+                "dane/niezupelne/ftv47.atsp",
+                "report-genetic-swapmut-ordercross-ftv47.atsp-100.log",
+                120
+        );
+        automaticGenetic(
+                new OrderedCrossover(0.8),
+                new SwapMutation(0.01),
+                1000,
+                "dane/niezupelne/ftv47.atsp",
+                "report-genetic-swapmut-ordercross-ftv47.atsp-1000.log",
+                120
+        );
+        automaticGenetic(
+                new OrderedCrossover(0.8),
+                new SwapMutation(0.01),
+                10000,
+                "dane/niezupelne/ftv47.atsp",
+                "report-genetic-swapmut-ordercross-ftv47.atsp-10000.log",
+                120
+        );
+
+        automaticGenetic(
+                new OrderedCrossover(0.8),
+                new SwapMutation(0.01),
+                100,
+                "dane/niezupelne/ftv170.atsp",
+                "report-genetic-swapmut-ordercross-ftv170.atsp-100.log",
+                240
+        );
+        automaticGenetic(
+                new OrderedCrossover(0.8),
+                new SwapMutation(0.01),
+                1000,
+                "dane/niezupelne/ftv170.atsp",
+                "report-genetic-swapmut-ordercross-ftv170.atsp-1000.log",
+                240
+        );
+        automaticGenetic(
+                new OrderedCrossover(0.8),
+                new SwapMutation(0.01),
+                10000,
+                "dane/niezupelne/ftv170.atsp",
+                "report-genetic-swapmut-ordercross-ftv170.atsp-10000.log",
+                240
+        );
+
+        automaticGenetic(
+                new OrderedCrossover(0.8),
+                new SwapMutation(0.01),
+                100,
+                "dane/niezupelne/rbg403.atsp",
+                "report-genetic-swapmut-ordercross-rbg403.atsp-100.log",
+                360
+        );
+        automaticGenetic(
+                new OrderedCrossover(0.8),
+                new SwapMutation(0.01),
+                1000,
+                "dane/niezupelne/rbg403.atsp",
+                "report-genetic-swapmut-ordercross-rbg403.atsp-1000.log",
+                360
+        );
+        automaticGenetic(
+                new OrderedCrossover(0.8),
+                new SwapMutation(0.01),
+                10000,
+                "dane/niezupelne/rbg403.atsp",
+                "report-genetic-swapmut-ordercross-rbg403.atsp-10000.log",
+                360
+        );
+
+
+
+
+
+
+
+        automaticGenetic(
+                new CycleCrossover(0.8),
+                new SwapMutation(0.01),
+                100,
+                "dane/niezupelne/ftv47.atsp",
+                "report-genetic-swapmut-ordercycl-ftv47.atsp-100.log",
+                120
+        );
+        automaticGenetic(
+                new CycleCrossover(0.8),
+                new SwapMutation(0.01),
+                1000,
+                "dane/niezupelne/ftv47.atsp",
+                "report-genetic-swapmut-ordercycl-ftv47.atsp-1000.log",
+                120
+        );
+        automaticGenetic(
+                new CycleCrossover(0.8),
+                new SwapMutation(0.01),
+                10000,
+                "dane/niezupelne/ftv47.atsp",
+                "report-genetic-swapmut-ordercycl-ftv47.atsp-10000.log",
+                120
+        );
+
+        automaticGenetic(
+                new CycleCrossover(0.8),
+                new SwapMutation(0.01),
+                100,
+                "dane/niezupelne/ftv170.atsp",
+                "report-genetic-swapmut-ordercycl-ftv170.atsp-100.log",
+                240
+        );
+        automaticGenetic(
+                new CycleCrossover(0.8),
+                new SwapMutation(0.01),
+                1000,
+                "dane/niezupelne/ftv170.atsp",
+                "report-genetic-swapmut-ordercycl-ftv170.atsp-1000.log",
+                240
+        );
+        automaticGenetic(
+                new CycleCrossover(0.8),
+                new SwapMutation(0.01),
+                10000,
+                "dane/niezupelne/ftv170.atsp",
+                "report-genetic-swapmut-ordercycl-ftv170.atsp-10000.log",
+                240
+        );
+
+        automaticGenetic(
+                new CycleCrossover(0.8),
+                new SwapMutation(0.01),
+                100,
+                "dane/niezupelne/rbg403.atsp",
+                "report-genetic-swapmut-ordercycl-rbg403.atsp-100.log",
+                360
+        );
+        automaticGenetic(
+                new CycleCrossover(0.8),
+                new SwapMutation(0.01),
+                1000,
+                "dane/niezupelne/rbg403.atsp",
+                "report-genetic-swapmut-ordercycl-rbg403.atsp-1000.log",
+                360
+        );
+        automaticGenetic(
+                new CycleCrossover(0.8),
+                new SwapMutation(0.01),
+                10000,
+                "dane/niezupelne/rbg403.atsp",
+                "report-genetic-swapmut-ordercycl-rbg403.atsp-10000.log",
+                360
+        );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        automaticGenetic(
+                new OrderedCrossover(0.8),
+                new InversionMutation(0.01),
+                100,
+                "dane/niezupelne/ftv47.atsp",
+                "report-genetic-invmut-ordercross-ftv47.atsp-100.log",
+                120
+        );
+        automaticGenetic(
+                new OrderedCrossover(0.8),
+                new InversionMutation(0.01),
+                1000,
+                "dane/niezupelne/ftv47.atsp",
+                "report-genetic-invmut-ordercross-ftv47.atsp-1000.log",
+                120
+        );
+        automaticGenetic(
+                new OrderedCrossover(0.8),
+                new InversionMutation(0.01),
+                10000,
+                "dane/niezupelne/ftv47.atsp",
+                "report-genetic-invmut-ordercross-ftv47.atsp-10000.log",
+                120
+        );
+
+        automaticGenetic(
+                new OrderedCrossover(0.8),
+                new InversionMutation(0.01),
+                100,
+                "dane/niezupelne/ftv170.atsp",
+                "report-genetic-invmut-ordercross-ftv170.atsp-100.log",
+                240
+        );
+        automaticGenetic(
+                new OrderedCrossover(0.8),
+                new InversionMutation(0.01),
+                1000,
+                "dane/niezupelne/ftv170.atsp",
+                "report-genetic-invmut-ordercross-ftv170.atsp-1000.log",
+                240
+        );
+        automaticGenetic(
+                new OrderedCrossover(0.8),
+                new InversionMutation(0.01),
+                10000,
+                "dane/niezupelne/ftv170.atsp",
+                "report-genetic-invmut-ordercross-ftv170.atsp-10000.log",
+                240
+        );
+
+        automaticGenetic(
+                new OrderedCrossover(0.8),
+                new InversionMutation(0.01),
+                100,
+                "dane/niezupelne/rbg403.atsp",
+                "report-genetic-invmut-ordercross-rbg403.atsp-100.log",
+                360
+        );
+        automaticGenetic(
+                new OrderedCrossover(0.8),
+                new InversionMutation(0.01),
+                1000,
+                "dane/niezupelne/rbg403.atsp",
+                "report-genetic-invmut-ordercross-rbg403.atsp-1000.log",
+                360
+        );
+        automaticGenetic(
+                new OrderedCrossover(0.8),
+                new InversionMutation(0.01),
+                10000,
+                "dane/niezupelne/rbg403.atsp",
+                "report-genetic-invmut-ordercross-rbg403.atsp-10000.log",
+                360
+        );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        automaticGenetic(
+                new CycleCrossover(0.8),
+                new InversionMutation(0.01),
+                100,
+                "dane/niezupelne/ftv47.atsp",
+                "report-genetic-invmut-cyclcross-ftv47.atsp-100.log",
+                120
+        );
+        automaticGenetic(
+                new CycleCrossover(0.8),
+                new InversionMutation(0.01),
+                1000,
+                "dane/niezupelne/ftv47.atsp",
+                "report-genetic-invmut-cyclcross-ftv47.atsp-1000.log",
+                120
+        );
+        automaticGenetic(
+                new CycleCrossover(0.8),
+                new InversionMutation(0.01),
+                10000,
+                "dane/niezupelne/ftv47.atsp",
+                "report-genetic-invmut-cyclcross-ftv47.atsp-10000.log",
+                120
+        );
+
+        automaticGenetic(
+                new CycleCrossover(0.8),
+                new InversionMutation(0.01),
+                100,
+                "dane/niezupelne/ftv170.atsp",
+                "report-genetic-invmut-cyclcross-ftv170.atsp-100.log",
+                240
+        );
+        automaticGenetic(
+                new CycleCrossover(0.8),
+                new InversionMutation(0.01),
+                1000,
+                "dane/niezupelne/ftv170.atsp",
+                "report-genetic-invmut-cyclcross-ftv170.atsp-1000.log",
+                240
+        );
+        automaticGenetic(
+                new CycleCrossover(0.8),
+                new InversionMutation(0.01),
+                10000,
+                "dane/niezupelne/ftv170.atsp",
+                "report-genetic-invmut-cyclcross-ftv170.atsp-10000.log",
+                240
+        );
+
+        automaticGenetic(
+                new CycleCrossover(0.8),
+                new InversionMutation(0.01),
+                100,
+                "dane/niezupelne/rbg403.atsp",
+                "report-genetic-invmut-cyclcross-rbg403.atsp-100.log",
+                360
+        );
+        automaticGenetic(
+                new CycleCrossover(0.8),
+                new InversionMutation(0.01),
+                1000,
+                "dane/niezupelne/rbg403.atsp",
+                "report-genetic-invmut-cyclcross-rbg403.atsp-1000.log",
+                360
+        );
+        automaticGenetic(
+                new CycleCrossover(0.8),
+                new InversionMutation(0.01),
+                10000,
+                "dane/niezupelne/rbg403.atsp",
+                "report-genetic-invmut-cyclcross-rbg403.atsp-10000.log",
+                360
+        );
     }
 
     public static void automaticBruteForceTest() throws IOException {
@@ -264,6 +597,34 @@ public class Main {
                 coolingFactor
         ));
         String[] files = new String[10];
+        Arrays.fill(files, filename);
+        TSP tsp = new TSP(
+                new SequenceFileDataProvider(files),
+                new StubAlgorithmProvider(algorithms),
+                reportGenerator,
+                new AlgorithmMeasurementWithBestSolutionTrack((long) maxSecondsLimit*1000)
+        );
+        tsp.run();
+        new ToFileWriter(reportName).write(reportGenerator.generateReport());
+    }
+
+    public static void automaticGenetic(
+            Crossover crossover,
+            Mutation mutation,
+            int populationSize,
+            String filename,
+            String reportName,
+            int maxSecondsLimit
+    ) throws IOException {
+        ReportGenerator reportGenerator = new HumanReadableReportWithBestSolutionTrack();
+        ArrayList<Algorithm> algorithms = new ArrayList<>();
+        algorithms.add(new Genetic(
+                crossover,
+                mutation,
+                new TournamentSelection(),
+                populationSize
+        ));
+        String[] files = new String[1];
         Arrays.fill(files, filename);
         TSP tsp = new TSP(
                 new SequenceFileDataProvider(files),
