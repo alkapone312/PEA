@@ -17,7 +17,6 @@ public class Genetic implements Algorithm {
     private Mutation mutation;
     private Selection selection;
     private double populationSize;
-    private double numberOfGenerations;
 
     private Tour bestSolution = null;
 
@@ -25,14 +24,12 @@ public class Genetic implements Algorithm {
             Crossover crossover,
             Mutation mutation,
             Selection selection,
-            int populationSize,
-            int numberOfGenerations
+            int populationSize
     ) {
         this.crossover = crossover;
         this.mutation = mutation;
         this.selection = selection;
         this.populationSize = populationSize;
-        this.numberOfGenerations = numberOfGenerations;
     }
 
     @Override
@@ -54,7 +51,8 @@ public class Genetic implements Algorithm {
             Tour bestTour = getBestTour(population);
             if(bestSolution.getCost() > bestTour.getCost()) {
                 bestSolution = bestTour.clone();
-                observer.invoke(bestSolution.getTour(), bestSolution.getCost());
+                if (observer != null)
+                    observer.invoke(bestSolution.getTour(), bestSolution.getCost());
             }
         }
 
@@ -97,21 +95,6 @@ public class Genetic implements Algorithm {
 
     private Tour getBestTour(List<Tour> population) {
         return Collections.min(population, Comparator.comparingInt(Tour::getCost));
-    }
-
-    private void sortByFitness(List<List<Integer>> population) {
-        population.sort(
-            (t1, t2) -> Double.compare(
-                this.calculateFitness(t2),
-                this.calculateFitness(t1)
-            )
-        );
-    }
-
-    private double calculateFitness(List<Integer> chromosome) {
-        double totalCost = calculateTotalDistance(chromosome);
-
-        return 1 / totalCost; // Maximizing fitness, so use reciprocal of cost.
     }
 
     private int calculateTotalDistance(List<Integer> tour) {
