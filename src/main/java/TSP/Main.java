@@ -38,119 +38,119 @@ public class Main {
     }
 
     public static void doAutomated() throws IOException {
-//        automaticBruteForceTest();
-//        automaticDynamicProgrammingTest();
-//        automaticBranchAndBoundTest();
-//        automaticTabuSearchTest(
-//                "dane/niezupelne/ftv47.atsp",
-//                120,
-//                "report-tabu-random-swap-47.log",
-//                new SwapRandomNodesNeighbors()
-//        );
-//        automaticTabuSearchTest(
-//                "dane/niezupelne/ftv170.atsp",
-//                240,
-//                "report-tabu-random-swap-170.log",
-//                new SwapRandomNodesNeighbors()
-//        );
-//        automaticTabuSearchTest(
-//                "dane/niezupelne/rbg403.atsp",
-//                360,
-//                "report-tabu-random-swap-403.log",
-//                new SwapRandomNodesNeighbors()
-//        );
-//        automaticTabuSearchTest(
-//                "dane/niezupelne/ftv47.atsp",
-//                120,
-//                "report-random-insert-47.log",
-//                new RandomNodeInsertion()
-//        );
-//        automaticTabuSearchTest(
-//                "dane/niezupelne/ftv170.atsp",
-//                240,
-//                "report-random-insert-170.log",
-//                new RandomNodeInsertion()
-//        );
-//        automaticTabuSearchTest(
-//                "dane/niezupelne/rbg403.atsp",
-//                360,
-//                "report-random-insert-403.log",
-//                new RandomNodeInsertion()
-//        );
-//        automaticTabuSearchTest(
-//                "dane/niezupelne/ftv47.atsp",
-//                120,
-//                "report-tabu-reverse-subroute-47.log",
-//                new InverseRandomSubrouteGeneration()
-//        );
-//        automaticTabuSearchTest(
-//                "dane/niezupelne/ftv170.atsp",
-//                240,
-//                "report-tabu-reverse-subroute-170.log",
-//                new InverseRandomSubrouteGeneration()
-//        );
-//        automaticTabuSearchTest(
-//                "dane/niezupelne/rbg403.atsp",
-//                360,
-//                "report-tabu-reverse-subroute-403.log",
-//                new InverseRandomSubrouteGeneration()
-//        );
-//
-//
-//        automaticSimulatedAnnealing(
-//                "dane/niezupelne/ftv47.atsp",
-//                120,
-//                0.99,
-//                "report-sa-47-0.99.log"
-//        );
-//        automaticSimulatedAnnealing(
-//                "dane/niezupelne/ftv170.atsp",
-//                240,
-//                0.99,
-//                "report-sa-170-0.99.log"
-//        );
-//        automaticSimulatedAnnealing(
-//                "dane/niezupelne/rbg403.atsp",
-//                360,
-//                0.99,
-//                "report-sa-403-0.99.log"
-//        );
-//        automaticSimulatedAnnealing(
-//                "dane/niezupelne/ftv47.atsp",
-//                120,
-//                0.999,
-//                "report-sa-47-0.999.log"
-//        );
-//        automaticSimulatedAnnealing(
-//                "dane/niezupelne/ftv170.atsp",
-//                240,
-//                0.999,
-//                "report-sa-170-0.999.log"
-//        );
-//        automaticSimulatedAnnealing(
-//                "dane/niezupelne/rbg403.atsp",
-//                360,
-//                0.999,
-//                "report-sa-403-0.999.log"
-//        );
-//        automaticSimulatedAnnealing(
-//                "dane/niezupelne/ftv47.atsp",
-//                120,
-//                0.9999,
-//                "report-sa-47-0.9999.log"
-//        );
-//        automaticSimulatedAnnealing(
-//                "dane/niezupelne/ftv170.atsp",
-//                240,
-//                0.9999,
-//                "report-sa-170-0.9999.log"
-//        );
-//        automaticSimulatedAnnealing(
-//                "dane/niezupelne/rbg403.atsp",
-//                360,
-//                0.9999,
-//                "report-sa-403-0.9999.log"
-//        );
+        automaticBruteForceTest();
+        automaticDynamicProgrammingTest();
+        automaticBranchAndBoundTest();
+        automaticTabuSearchTest(
+                "dane/niezupelne/ftv47.atsp",
+                120,
+                "report-tabu-random-swap-47.log",
+                new SwapRandomNodesNeighbors()
+        );
+        automaticTabuSearchTest(
+                "dane/niezupelne/ftv170.atsp",
+                240,
+                "report-tabu-random-swap-170.log",
+                new SwapRandomNodesNeighbors()
+        );
+        automaticTabuSearchTest(
+                "dane/niezupelne/rbg403.atsp",
+                360,
+                "report-tabu-random-swap-403.log",
+                new SwapRandomNodesNeighbors()
+        );
+        automaticTabuSearchTest(
+                "dane/niezupelne/ftv47.atsp",
+                120,
+                "report-random-insert-47.log",
+                new RandomNodeInsertion()
+        );
+        automaticTabuSearchTest(
+                "dane/niezupelne/ftv170.atsp",
+                240,
+                "report-random-insert-170.log",
+                new RandomNodeInsertion()
+        );
+        automaticTabuSearchTest(
+                "dane/niezupelne/rbg403.atsp",
+                360,
+                "report-random-insert-403.log",
+                new RandomNodeInsertion()
+        );
+        automaticTabuSearchTest(
+                "dane/niezupelne/ftv47.atsp",
+                120,
+                "report-tabu-reverse-subroute-47.log",
+                new InverseRandomSubrouteGeneration()
+        );
+        automaticTabuSearchTest(
+                "dane/niezupelne/ftv170.atsp",
+                240,
+                "report-tabu-reverse-subroute-170.log",
+                new InverseRandomSubrouteGeneration()
+        );
+        automaticTabuSearchTest(
+                "dane/niezupelne/rbg403.atsp",
+                360,
+                "report-tabu-reverse-subroute-403.log",
+                new InverseRandomSubrouteGeneration()
+        );
+
+
+        automaticSimulatedAnnealing(
+                "dane/niezupelne/ftv47.atsp",
+                120,
+                0.99,
+                "report-sa-47-0.99.log"
+        );
+        automaticSimulatedAnnealing(
+                "dane/niezupelne/ftv170.atsp",
+                240,
+                0.99,
+                "report-sa-170-0.99.log"
+        );
+        automaticSimulatedAnnealing(
+                "dane/niezupelne/rbg403.atsp",
+                360,
+                0.99,
+                "report-sa-403-0.99.log"
+        );
+        automaticSimulatedAnnealing(
+                "dane/niezupelne/ftv47.atsp",
+                120,
+                0.999,
+                "report-sa-47-0.999.log"
+        );
+        automaticSimulatedAnnealing(
+                "dane/niezupelne/ftv170.atsp",
+                240,
+                0.999,
+                "report-sa-170-0.999.log"
+        );
+        automaticSimulatedAnnealing(
+                "dane/niezupelne/rbg403.atsp",
+                360,
+                0.999,
+                "report-sa-403-0.999.log"
+        );
+        automaticSimulatedAnnealing(
+                "dane/niezupelne/ftv47.atsp",
+                120,
+                0.9999,
+                "report-sa-47-0.9999.log"
+        );
+        automaticSimulatedAnnealing(
+                "dane/niezupelne/ftv170.atsp",
+                240,
+                0.9999,
+                "report-sa-170-0.9999.log"
+        );
+        automaticSimulatedAnnealing(
+                "dane/niezupelne/rbg403.atsp",
+                360,
+                0.9999,
+                "report-sa-403-0.9999.log"
+        );
         automaticGenetic(
                 new OrderedCrossover(0.8),
                 new SwapMutation(0.01),
@@ -225,13 +225,6 @@ public class Main {
                 "report-genetic-swapmut-ordercross-rbg403.atsp-10000.log",
                 360
         );
-
-
-
-
-
-
-
         automaticGenetic(
                 new CycleCrossover(0.8),
                 new SwapMutation(0.01),
@@ -306,20 +299,6 @@ public class Main {
                 "report-genetic-swapmut-ordercycl-rbg403.atsp-10000.log",
                 360
         );
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         automaticGenetic(
                 new OrderedCrossover(0.8),
                 new InversionMutation(0.01),
@@ -394,21 +373,6 @@ public class Main {
                 "report-genetic-invmut-ordercross-rbg403.atsp-10000.log",
                 360
         );
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         automaticGenetic(
                 new CycleCrossover(0.8),
                 new InversionMutation(0.01),
@@ -481,6 +445,54 @@ public class Main {
                 10000,
                 "dane/niezupelne/rbg403.atsp",
                 "report-genetic-invmut-cyclcross-rbg403.atsp-10000.log",
+                360
+        );
+        automaticGenetic(
+                new CycleCrossover(0.8),
+                new SwapMutation(0.01),
+                10000,
+                "dane/niezupelne/rbg403.atsp",
+                "report-genetic-smcc-mut0.01.log",
+                360
+        );
+        automaticGenetic(
+                new CycleCrossover(0.8),
+                new SwapMutation(0.05),
+                10000,
+                "dane/niezupelne/rbg403.atsp",
+                "report-genetic-smcc-mut0.05.log",
+                360
+        );
+        automaticGenetic(
+                new CycleCrossover(0.8),
+                new SwapMutation(0.1),
+                10000,
+                "dane/niezupelne/rbg403.atsp",
+                "report-genetic-smcc-mut0.10.log",
+                360
+        );
+        automaticGenetic(
+                new CycleCrossover(0.5),
+                new SwapMutation(0.01),
+                10000,
+                "dane/niezupelne/rbg403.atsp",
+                "report-genetic-smcc-cross0.5.log",
+                360
+        );
+        automaticGenetic(
+                new CycleCrossover(0.7),
+                new SwapMutation(0.01),
+                10000,
+                "dane/niezupelne/rbg403.atsp",
+                "report-genetic-smcc-cross0.7.log",
+                360
+        );
+        automaticGenetic(
+                new CycleCrossover(0.9),
+                new SwapMutation(0.01),
+                10000,
+                "dane/niezupelne/rbg403.atsp",
+                "report-genetic-smcc-cross0.9.log",
                 360
         );
     }
