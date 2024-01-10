@@ -21,8 +21,8 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        Main.doAutomated();
-//        Main.doHuman();
+//        Main.doAutomated();
+        Main.doHuman();
     }
 
     public static void doHuman() throws IOException {
