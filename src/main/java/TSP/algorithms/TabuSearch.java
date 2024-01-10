@@ -57,7 +57,9 @@ public class TabuSearch implements Algorithm {
 
             if(calculateTotalDistance(currentSolution, distanceMatrix) < calculateTotalDistance(bestSolution, distanceMatrix)) {
                 bestSolution = currentSolution;
-                observer.invoke(currentSolution, calculateTotalDistance(bestSolution, distanceMatrix));
+                if(observer != null) {
+                    observer.invoke(currentSolution, calculateTotalDistance(bestSolution, distanceMatrix));
+                }
                 movesWithoutUpgrade = 0;
             } else {
                 movesWithoutUpgrade++;

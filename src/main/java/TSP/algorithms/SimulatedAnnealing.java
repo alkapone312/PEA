@@ -59,7 +59,9 @@ public class SimulatedAnnealing implements Algorithm {
                     if(newCost < bestSolutionCost) {
                         bestSolution = currentSolution;
                         bestSolutionCost = newCost;
-                        observer.invoke(currentSolution, bestSolutionCost);
+                        if(observer != null) {
+                            observer.invoke(currentSolution, bestSolutionCost);
+                        }
                     }
                 }
             }

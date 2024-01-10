@@ -51,8 +51,9 @@ public class Genetic implements Algorithm {
             Tour bestTour = getBestTour(population);
             if(bestSolution.getCost() > bestTour.getCost()) {
                 bestSolution = bestTour.clone();
-                if (observer != null)
+                if (observer != null) {
                     observer.invoke(bestSolution.getTour(), bestSolution.getCost());
+                }
             }
         }
 
